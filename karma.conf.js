@@ -6,8 +6,8 @@ module.exports = function(config) {
     files: [
       {pattern: 'node_modules/angular/angular.js', watched: false},
       {pattern: 'node_modules/angular-mocks/angular-mocks.js', watched: false},
-      'client/mod1/mod1.controller.js',
-      'client/mod1/mod1.controller.spec.js'
+      'client/src/*.js',
+      'client/test/*.js'
     ],
     exclude: [],
     preprocessors: {},
