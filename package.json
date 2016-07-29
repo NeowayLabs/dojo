@@ -1,0 +1,39 @@
+{
+  "name": "dojo",
+  "version": "0.0.1",
+  "description": "Neoway's first dojo project",
+  "main": "index.js",
+  "scripts": {
+    "test": "node_modules/karma/bin/karma start karma.conf.js --single-run",
+    "watch:test": "node_modules/karma/bin/karma start karma.conf.js --auto-watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/OctavioBR/dojo.git"
+  },
+  "keywords": [
+    "test",
+    "dojo",
+    "frontend"
+  ],
+  "author": "Octávio Richter <octavio.richter@neoway.com.br>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/OctavioBR/dojo/issues"
+  },
+  "homepage": "https://github.com/OctavioBR/dojo#readme",
+  "devDependencies": {
+    "angular-mocks": "^1.5.8",
+    "jasmine": "^2.4.1",
+    "jscs": "^3.0.7",
+    "jshint": "^2.9.2",
+    "karma": "^1.1.2",
+    "karma-jasmine": "^1.0.2",
+    "karma-phantomjs-launcher": "^1.0.1",
+    "phantomjs": "^2.1.7"
+  },
+  "dependencies": {
+    "angular": "^1.5.8",
+    "angular-route": "^1.5.8"
+  }
+}
