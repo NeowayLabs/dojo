@@ -35,5 +35,14 @@
   "dependencies": {
     "angular": "^1.5.8",
     "angular-route": "^1.5.8"
+  },
+  "jshintConfig": {
+    "jasmine": true,
+    "browser": true,
+    "phantom": true,
+    "node": true
+  },
+  "jscsConfig": {
+    "preset": "crockford"
   }
 }
