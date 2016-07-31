@@ -43,6 +43,7 @@
     "node": true
   },
   "jscsConfig": {
-    "preset": "crockford"
+    "preset": "crockford",
+    "validateIndentation": 2
   }
 }
