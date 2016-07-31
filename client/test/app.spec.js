@@ -6,13 +6,13 @@
         var authController, $httpBackend, $rootScope;
 
         beforeEach(function () {
-           module('dojo');
+            module('dojo');
 
-           inject(function ($controller, $injector) {
-               $rootScope = $injector.get('$rootScope');
-               $httpBackend = $injector.get('$httpBackend');
-               authController = $controller('auth', {$scope: $rootScope});
-           });
+            inject(function ($controller, $injector) {
+                $rootScope = $injector.get('$rootScope');
+                $httpBackend = $injector.get('$httpBackend');
+                authController = $controller('auth', {$scope: $rootScope});
+            });
         });
 
         it('should exist', function () {
@@ -30,14 +30,14 @@
                     authController.hitThePoint();
                 });
 
-                it('should send data to "ponto" API and show', function() {
+                it('should send data to "ponto" API and show', function () {
                     $httpBackend.expect('POST', '/api/v1/hit').respond(200, {});
                     $httpBackend.flush();
                 });
 
                 fit("should show succes message", function () {
-                   $httpBackend.flush();
-                   expect(authController.$scope.message).toEqual('Você bateu o ponto com sucesso');
+                    $httpBackend.flush();
+                    expect(authController.$scope.message).toEqual('Você bateu o ponto com sucesso');
                 });
             });
 
