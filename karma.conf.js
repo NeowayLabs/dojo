@@ -22,7 +22,8 @@ module.exports = function (config) {
       namedFiles: true,
       pageTitle: 'Dojo App Specs',
       urlFriendlyName: true,
-      reportName: 'spec-results'
+      reportName: 'spec-results',
+      preserveDescribeNesting: true
     },
 
     port: 9876,
