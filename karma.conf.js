@@ -10,7 +10,21 @@ module.exports = function (config) {
     ],
     exclude: [],
     preprocessors: {},
-    reporters: ['progress'],
+
+    reporters: ['mocha', 'html'],
+
+    mochaReporter: { // info at https://github.com/litixsoft/karma-mocha-reporter
+      output: 'autowatch'
+    },
+
+    htmlReporter: { // info at https://github.com/dtabuenc/karma-html-reporter
+      outputDir: 'client/test/reports',
+      namedFiles: true,
+      pageTitle: 'Dojo App Specs',
+      urlFriendlyName: true,
+      reportName: 'spec-results'
+    },
+
     port: 9876,
     colors: true,
     logLevel: config.LOG_INFO,

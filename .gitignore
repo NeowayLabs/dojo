@@ -1,3 +1,6 @@
+# Test reports
+client/test/reports
+
 # Logs
 logs
 *.log
