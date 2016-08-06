@@ -1,13 +1,15 @@
 describe('dojo auth controller', function () {
-  var authController, $httpBackend, $rootScope;
+  var authController;
+  var $httpBackend;
+  var $scope = {};
 
   beforeEach(function () {
     module('dojo');
 
     inject(function ($controller, $injector) {
-      $rootScope = $injector.get('$rootScope');
+      $scope = {};
       $httpBackend = $injector.get('$httpBackend');
-      authController = $controller('auth', {$scope: $rootScope});
+      authController = $controller('auth', {$scope: $scope});
     });
   });
 
@@ -18,12 +20,9 @@ describe('dojo auth controller', function () {
   describe('hitting the point through hitThePoint', function () {
     describe('when user fills all inputs with valid data', function () {
       beforeEach(function () {
-        $rootScope = {
-          user: {login: "Morelli", password: 1337}
-        };
-
+        $scope.user = {login: "Morelli", password: 1337};
         $httpBackend.when('POST', '/api/v1/hit').respond(200, {});
-        authController.hitThePoint();
+        $scope.hitThePoint();
       });
 
       it('should send data to "ponto" API and show', function () {
@@ -31,20 +30,57 @@ describe('dojo auth controller', function () {
         $httpBackend.flush();
       });
 
-      fit("should show succes message", function () {
+      it("should show succes message", function () {
         $httpBackend.flush();
-        expect(authController.$scope.message).toEqual('Você bateu o ponto com sucesso');
+        expect($scope.message).toEqual('Você bateu o ponto com sucesso');
       });
     });
 
     describe('when user does not fills required inputs', function () {
-      it('missing login', function () {});
-      it('missing password', function () {});
+      beforeEach(function () {
+        $scope.user = {};
+      });
+
+      it('missing login', function () {
+        $scope.user.login = "";
+        $scope.user.password = "1337";
+        $scope.hitThePoint();
+        expect($scope.message).toEqual('Você esqueceu de preencher o campo de login!');
+      });
+
+      it('missing password', function () {
+        $scope.user.login = "Morelli";
+        $scope.user.password = "";
+        $scope.hitThePoint();
+        expect($scope.message).toEqual('Você esqueceu de preencher o campo de senha!');
+      });
     });
 
     describe('server errors', function () {
-      it('server offline', function () {});
-      it('response error', function () {});
+      beforeEach(function () {
+        $scope.user = {login: "Morelli", password: 1337};
+      });
+
+      it('response auth error', function () {
+        $httpBackend.when('POST', '/api/v1/hit').respond(401, 'Houve algum problema na autenticação do seus dados.');
+        $scope.hitThePoint();
+        $httpBackend.flush();
+        expect($scope.message).toEqual('Houve algum problema na autenticação do seus dados.');
+      });
+
+      it('server offline', function () {
+        $httpBackend.when('POST', '/api/v1/hit').respond(404, {});
+        $scope.hitThePoint();
+        $httpBackend.flush();
+        expect($scope.message).toEqual('Servidor offline.');
+      });
+
+      it('response error', function () {
+        $httpBackend.when('POST', '/api/v1/hit').respond(500, {});
+        $scope.hitThePoint();
+        $httpBackend.flush();
+        expect($scope.message).toEqual('Aconteceu algum erro com o servidor :(');
+      });
     });
   });
 });
