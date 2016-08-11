@@ -8,8 +8,8 @@ We've started an app from the ground up. It's meant to be an external layer on t
 - Quicker access with better authentication
 - Keep own data base to let user adjust (possible forgotten) tracks
 - Report all time tracking any Month, anytime
-This app is designed to serve as a good example of well tested, clean & always working project.
 
+This app is designed to serve as a good example of well tested, clean & always working project.  
 Later, we plan to take some "bad examples" and code tests for them, helping it evolve with better quality.
 
 # Further Info
