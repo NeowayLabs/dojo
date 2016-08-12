@@ -9,7 +9,7 @@ describe('dojo auth controller', function () {
     inject(function ($controller, $injector) {
       $scope = {};
       $httpBackend = $injector.get('$httpBackend');
-      authController = $controller('auth', {$scope: $scope});
+      authController = $controller('authentication', {$scope: $scope});
     });
   });
 

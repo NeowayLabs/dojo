@@ -2,14 +2,19 @@ module.exports = function (config) {
   config.set({
     basePath: '',
     frameworks: ['jasmine'],
+
     files: [
       {pattern: 'node_modules/angular/angular.js', watched: false},
       {pattern: 'node_modules/angular-mocks/angular-mocks.js', watched: false},
-      'client/src/*.js',
-      'client/test/*.js'
+      'client/src/**/*.js',
+      'client/test/**/*.js',
+      'client/**/*.html'
     ],
     exclude: [],
-    preprocessors: {},
+
+    preprocessors: {
+      'client/**/*.html': ['ng-html2js']
+    },
 
     reporters: ['mocha', 'html'],
 
