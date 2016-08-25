@@ -12,10 +12,6 @@ module.exports = function (config) {
     ],
     exclude: [],
 
-    preprocessors: {
-      'client/**/*.html': ['ng-html2js']
-    },
-
     reporters: ['mocha', 'html'],
 
     mochaReporter: { // info at https://github.com/litixsoft/karma-mocha-reporter
