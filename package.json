@@ -26,6 +26,7 @@
   "devDependencies": {
     "angular-mocks": "^1.5.8",
     "jasmine": "^2.4.1",
+    "jquery": "^3.1.0",
     "jscs": "^3.0.7",
     "jshint": "^2.9.2",
     "karma": "^1.1.2",

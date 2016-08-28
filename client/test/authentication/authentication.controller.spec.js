@@ -25,14 +25,14 @@ describe('dojo auth controller', function () {
         $scope.hitThePoint();
       });
 
-      it('should send data to "ponto" API and show', function () {
+      it('should send data to "ponto" API', function () {
         $httpBackend.expect('POST', '/api/v1/hit').respond(200, {});
         $httpBackend.flush();
       });
 
-      it("should show succes message", function () {
+      it("should show success message", function () {
         $httpBackend.flush();
-        expect($scope.message).toEqual('Você bateu o ponto com sucesso');
+            expect($scope.message).toEqual('Você bateu o ponto com sucesso');
       });
     });
 
@@ -84,4 +84,3 @@ describe('dojo auth controller', function () {
     });
   });
 });
-

@@ -4,6 +4,7 @@ module.exports = function (config) {
     frameworks: ['jasmine'],
 
     files: [
+      {pattern: 'node_modules/jquery/dist/jquery.js', watched: false},
       {pattern: 'node_modules/angular/angular.js', watched: false},
       {pattern: 'node_modules/angular-mocks/angular-mocks.js', watched: false},
       'client/src/**/*.js',

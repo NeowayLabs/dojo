@@ -1,3 +1,5 @@
+'use strict';
+
 describe('dojo auth directive', function () {
   var authenticationForm,
       $compile,
@@ -17,13 +19,31 @@ describe('dojo auth directive', function () {
       $httpBackend = _$httpBackend_;
       $templateCache = _$templateCache_;
     });
+
+    element = $compile ('<authentication-form></authentication-form>')($rootScope);
+    $rootScope.$digest();
   });
 
   it('should exist', function () {
-    element = $compile ('<authentication-form></authentication-form>')($rootScope);
-    $rootScope.$digest();
-    var s = element.html();
-    expect(s).toBeDefined();
+
+    expect(element.html()).toBeDefined();
   });
-  //TODO: Interact & test view behaviour
+
+  describe('when user fills all inputs with valid data and clicks ok', function () {
+    beforeEach(function () {
+      var loginInput = element.find('#login');
+      loginInput.val('Morelli');
+
+      var passwordInput = element.find('#password');
+      passwordInput.val('1337');
+
+      element.find('#authConfirm').click();
+    });
+
+    fit('should show a success message', function () {
+      var message = element.find('.message');
+      expect(message.text()).toBe('Você bateu o ponto com sucesso');
+    });
+  });
+
 });

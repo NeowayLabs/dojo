@@ -10,8 +10,8 @@
       };
 
       $scope.hitThePoint = function hitThePoint() {
+        console.log($scope.user);
         var isValid = authValidation();
-
         if (isValid) {
           $http
             .post('/api/v1/hit', $scope.user)
