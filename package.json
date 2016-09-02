@@ -4,8 +4,9 @@
   "description": "Neoway's first dojo project",
   "main": "index.js",
   "scripts": {
-    "test": "karma start karma.conf.js --single-run",
+    "test": "npm run templates && karma start karma.conf.js --single-run",
     "watch:test": "karma start karma.conf.js --auto-watch",
+    "watch:templates": "watch -p 'client/src/**/*.html' -c 'npm run templates'",
     "templates": "npm-html2js -i 'client/src/**/*.html' -o 'client/test/templates.js' -m 'dojo.templates'"
   },
   "repository": {
@@ -34,8 +35,10 @@
     "karma-jasmine": "^1.0.2",
     "karma-mocha-reporter": "^2.1.0",
     "karma-phantomjs-launcher": "^1.0.1",
+    "node-watch": "^0.4.0",
     "npm-html2js": "^0.1.8",
-    "phantomjs-prebuilt": "^2.1.8"
+    "phantomjs-prebuilt": "^2.1.8",
+    "watch-cli": "^0.2.1"
   },
   "dependencies": {
     "angular": "^1.5.8",
