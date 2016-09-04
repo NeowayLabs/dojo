@@ -20,30 +20,32 @@ describe('dojo auth directive', function () {
       $templateCache = _$templateCache_;
     });
 
-    element = $compile ('<authentication-form></authentication-form>')($rootScope);
+    element = $compile('<authentication-form></authentication-form>')($rootScope);
     $rootScope.$digest();
   });
 
   it('should exist', function () {
-
     expect(element.html()).toBeDefined();
   });
 
   describe('when user fills all inputs with valid data and clicks ok', function () {
     beforeEach(function () {
       var loginInput = element.find('#login');
-      loginInput.val('Morelli');
-
       var passwordInput = element.find('#password');
-      passwordInput.val('1337');
+
+      loginInput.val('Morelli').trigger('input');
+      passwordInput.val('1337').trigger('input');
+
+      $httpBackend.expect('POST', '/api/v1/hit').respond(200, {});
 
       element.find('#authConfirm').click();
+
+      $httpBackend.flush();
     });
 
-    fit('should show a success message', function () {
+    it('should show a success message', function () {
       var message = element.find('.message');
       expect(message.text()).toBe('Você bateu o ponto com sucesso');
     });
   });
-
 });
