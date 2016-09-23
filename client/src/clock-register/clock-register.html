@@ -1,6 +1,8 @@
-<div id="auth-form">
-  <input id="login" type="text" placeholder="login" ng-model="user.login">
-  <input id="password" type="password" placeholder="senha" ng-model="user.password">
-  <button id="authConfirm" ng-click="hitThePoint()">Bater o ponto</button>
-  <p class="message">{{message}}</p>
+<div>
+  <svg id="hitThePointBtn" ng-click="hitThePoint()"></svg>
+  <ul ng-repeat="mark in markings">
+    <li>{{ mark }}</li>
+  </ul>
+  <span>Horas trabalhadas: <strong>+ {{ day.workedHours }}</strong></span>
+  <span>Saldo do dia: <strong>+ {{ day.balanceHours }}</strong></span>
 </div>

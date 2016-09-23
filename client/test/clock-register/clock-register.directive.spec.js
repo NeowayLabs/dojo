@@ -1,6 +1,4 @@
-'use strict';
-
-xdescribe('dojo auth directive', function () {
+describe('dojo clock register directive', function () {
   var authenticationForm,
       $compile,
       $rootScope,
@@ -20,7 +18,7 @@ xdescribe('dojo auth directive', function () {
       $templateCache = _$templateCache_;
     });
 
-    element = $compile('<authentication-form></authentication-form>')($rootScope);
+    element = $compile('<clock-register></clock-register>')($rootScope);
     $rootScope.$digest();
   });
 
@@ -28,24 +26,24 @@ xdescribe('dojo auth directive', function () {
     expect(element.html()).toBeDefined();
   });
 
-  describe('when user fills all inputs with valid data and clicks ok', function () {
-    beforeEach(function () {
-      var loginInput = element.find('#login');
-      var passwordInput = element.find('#password');
+  describe('hit the point button', function () {
+    it('should exist', function () {
+      var hitThePointBtn = element.find('#hitThePointBtn')[0];
 
-      loginInput.val('Morelli').trigger('input');
-      passwordInput.val('1337').trigger('input');
-
-      $httpBackend.expect('POST', '/api/v1/user/new').respond(200, {});
-
-      element.find('#authConfirm').click();
-
-      $httpBackend.flush();
+      expect(hitThePointBtn).toBeDefined();
     });
 
-    it('should show a success message', function () {
-      var message = element.find('.message');
-      expect(message.text()).toBe('Você bateu o ponto com sucesso');
+    it('should prevent multiple clicks', function () {
+      // Impedir chamar a parada de bater o ponto em menos de um minuto
+    });
+
+    it('should hit the point', function () {
+    });
+
+    it('should handle "corujão" situations', function () {
+    });
+
+    it('should use browser native notification', function () {
     });
   });
 });
