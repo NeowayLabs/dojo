@@ -17,22 +17,22 @@ describe('dojo auth controller', function () {
     expect(authController).toBeDefined();
   });
 
-  describe('hitting the point through hitThePoint', function () {
+  describe('registering an user', function () {
     describe('when user fills all inputs with valid data', function () {
       beforeEach(function () {
         $scope.user = {login: "Morelli", password: 1337};
-        $httpBackend.when('POST', '/api/v1/hit').respond(200, {});
+        $httpBackend.when('POST', '/api/v1/user/new').respond(200, {});
         $scope.hitThePoint();
       });
 
-      it('should send data to "ponto" API', function () {
-        $httpBackend.expect('POST', '/api/v1/hit').respond(200, {});
+      it('should send data to user API', function () {
+        $httpBackend.expect('POST', '/api/v1/user/new').respond(200, {});
         $httpBackend.flush();
       });
 
       it("should show success message", function () {
         $httpBackend.flush();
-            expect($scope.message).toEqual('Você bateu o ponto com sucesso');
+            expect($scope.message).toEqual('Usuário cadastrado com sucesso!');
       });
     });
 
@@ -62,21 +62,21 @@ describe('dojo auth controller', function () {
       });
 
       it('response auth error', function () {
-        $httpBackend.when('POST', '/api/v1/hit').respond(401, 'Houve algum problema na autenticação do seus dados.');
+        $httpBackend.when('POST', '/api/v1/user/new').respond(401, 'Houve algum problema na autenticação do seus dados.');
         $scope.hitThePoint();
         $httpBackend.flush();
         expect($scope.message).toEqual('Houve algum problema na autenticação do seus dados.');
       });
 
       it('server offline', function () {
-        $httpBackend.when('POST', '/api/v1/hit').respond(404, {});
+        $httpBackend.when('POST', '/api/v1/user/new').respond(404, {});
         $scope.hitThePoint();
         $httpBackend.flush();
         expect($scope.message).toEqual('Servidor offline.');
       });
 
       it('response error', function () {
-        $httpBackend.when('POST', '/api/v1/hit').respond(500, {});
+        $httpBackend.when('POST', '/api/v1/user/new').respond(500, {});
         $scope.hitThePoint();
         $httpBackend.flush();
         expect($scope.message).toEqual('Aconteceu algum erro com o servidor :(');
