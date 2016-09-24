@@ -6,7 +6,7 @@
   "scripts": {
     "test": "npm run templates && karma start karma.conf.js --single-run",
     "watch:test": "karma start karma.conf.js --auto-watch",
-    "watch:templates": "watch -p 'client/src/**/*.html' -c 'npm run templates'",
+    "watch:templates": "npm run templates && watch -p 'client/src/**/*.html' -c 'npm run templates'",
     "templates": "npm-html2js -i 'client/src/**/*.html' -o 'client/test/templates.js' -m 'dojo.templates'"
   },
   "repository": {

@@ -36,7 +36,7 @@ describe('dojo auth directive', function () {
       loginInput.val('Morelli').trigger('input');
       passwordInput.val('1337').trigger('input');
 
-      $httpBackend.expect('POST', '/api/v1/hit').respond(200, {});
+      $httpBackend.expect('POST', '/api/v1/user/new').respond(200, {});
 
       element.find('#authConfirm').click();
 
@@ -45,7 +45,7 @@ describe('dojo auth directive', function () {
 
     it('should show a success message', function () {
       var message = element.find('.message');
-      expect(message.text()).toBe('Você bateu o ponto com sucesso');
+      expect(message.text()).toBe('Usuário cadastrado com sucesso!');
     });
   });
 });

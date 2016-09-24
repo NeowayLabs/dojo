@@ -14,9 +14,9 @@
 
         if (isValid) {
           $http
-            .post('/api/v1/hit', $scope.user)
+            .post('/api/v1/user/new', $scope.user)
             .then(function (data) {
-              $scope.message = 'Você bateu o ponto com sucesso';
+              $scope.message = 'Usuário cadastrado com sucesso!';
             }).catch(function (error) {
               var status = error.status;
 
