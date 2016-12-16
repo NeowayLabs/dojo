@@ -5,9 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "npm run templates && karma start karma.conf.js --single-run",
-    "watch:test": "karma start karma.conf.js --auto-watch",
-    "watch:templates": "npm run templates && watch -p 'src/**/*.html' -c 'npm run templates'",
-    "templates": "npm-html2js -i 'src/**/*.html' -o 'test/templates.js' -m 'dojo.templates'"
+    "watch:test": "npm run templates && karma start karma.conf.js --auto-watch && watch -p 'src/**/*.html' -c 'npm run templates'",
+    "templates": "npm-html2js -i 'src/**/*.html' -o 'src/templates.js' -m 'dojo.templates'"
   },
   "repository": {
     "type": "git",
