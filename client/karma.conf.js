@@ -7,9 +7,10 @@ module.exports = function (config) {
       {pattern: 'node_modules/jquery/dist/jquery.js', watched: false},
       {pattern: 'node_modules/angular/angular.js', watched: false},
       {pattern: 'node_modules/angular-mocks/angular-mocks.js', watched: false},
-      'src/**/*.js',
-      'test/**/*.js',
-      './**/*.html'
+      'src/**/*.html',
+      'src/**/!(*.spec).js',
+      'test/templates.js',
+      'src/**/*.spec.js'
     ],
     exclude: [],
 
