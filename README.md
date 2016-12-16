@@ -1,6 +1,6 @@
 # Proposal
 To improve our mindset of writing well tested code, following **T**est **D**riven **D**evelopment, we believe that hands on experience is the quickest way of learning how to write tests that will help guarantee quality for our apps.  
-It started focusing on frontend code based on angular, because it became a great gap lacking unit testing the UIs at most of our teams, but our dojo can (and probably will) cover TDD on backend apps too!
+It started focusing on frontend code based on _AngularJS_ because it became a great gap lacking unit testing the UIs in most of our teams. We are also developing server APIs to support client actions, making the app usefull. Octávio chose to develop the API in _Go_ because he wants to boot up his necessity on learning the language, focusing on _TDD_ principles, of course :innocent:
 
 # What's being developed
 We've started an app from the ground up. It's meant to be an external layer on top of our ~~disgusting~~ time tracking app, delivering some extra features like:
