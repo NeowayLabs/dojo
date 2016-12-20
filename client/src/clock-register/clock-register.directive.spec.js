@@ -1,11 +1,11 @@
 describe('dojo clock register directive', function () {
-  var authenticationForm,
-      $compile,
-      $rootScope,
-      $httpBackend,
-      $templateCache,
-      element,
-      view;
+  var authenticationForm;
+  var $compile;
+  var $rootScope;
+  var $httpBackend;
+  var $templateCache;
+  var element;
+  var view;
 
   beforeEach(function () {
     module('dojo');

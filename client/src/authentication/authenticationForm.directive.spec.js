@@ -1,11 +1,9 @@
-'use strict';
-
 describe('dojo auth directive', function () {
-  var scope,
-      element,
-      view,
-      $compile,
-      $httpBackend;
+  var scope;
+  var element;
+  var view;
+  var $compile;
+  var $httpBackend;
 
   beforeEach(function () {
     module('dojo');

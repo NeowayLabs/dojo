@@ -32,7 +32,7 @@ describe('dojo auth controller', function () {
 
       it("should show success message", function () {
         $httpBackend.flush();
-            expect($scope.message).toEqual('Usuário cadastrado com sucesso!');
+        expect($scope.message).toEqual('Usuário cadastrado com sucesso!');
       });
     });
 
