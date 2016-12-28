@@ -2,6 +2,7 @@ package model
 
 import (
 	"encoding/json"
+	"errors"
 	"io/ioutil"
 	"os"
 )
@@ -18,6 +19,12 @@ type User struct {
 func (u User) Save() error {
 	users := openCollection()
 
+	for _, element := range users {
+		if element.Name == u.Name {
+			return errors.New("User already exists")
+		}
+	}
+
 	users = append(users, u)
 
 	saveCollection(users)
@@ -26,7 +33,7 @@ func (u User) Save() error {
 
 func openCollection() []User {
 	if _, err := os.Stat(path); os.IsNotExist(err) { // when file doesn't exist yet
-		os.Mkdir("db", 0644) // TODO: extract from 'path' string
+		os.Mkdir("db", 0755) // TODO: extract from 'path' string
 		ioutil.WriteFile(path, []byte("[]"), 0644)
 	}
 

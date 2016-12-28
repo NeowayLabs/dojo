@@ -8,10 +8,8 @@ import (
 )
 
 func main() {
-	// http.HandleFunc("/api/v1/user/new", newUserHandler)
-	// http.ListenAndServe(":8080", nil)
-	u := model.User{Name: "Banana", Password: "321"}
-	u.Save()
+	http.HandleFunc("/api/v1/user/new", newUserHandler)
+	http.ListenAndServe(":8080", nil)
 }
 
 func newUserHandler(rw http.ResponseWriter, req *http.Request) {
@@ -22,8 +20,10 @@ func newUserHandler(rw http.ResponseWriter, req *http.Request) {
 	err := decoder.Decode(&u)
 	check(err)
 
-	err2 := u.Save()
-	check(err2)
+	err = u.Save()
+	if err != nil {
+		http.Error(rw, err.Error(), 500)
+	}
 }
 
 func check(e error) {
