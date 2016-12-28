@@ -23,6 +23,8 @@ func newUserHandler(rw http.ResponseWriter, req *http.Request) {
 	err = u.Save()
 	if err != nil {
 		http.Error(rw, err.Error(), 500)
+	} else {
+		rw.Write([]byte("Saved user " + u.Name))
 	}
 }
 
