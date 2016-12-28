@@ -1,6 +1,9 @@
 # Test reports
 client/reports
 
+# API store
+api/db
+
 # Logs
 logs
 *.log

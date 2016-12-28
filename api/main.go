@@ -2,16 +2,16 @@ package main
 
 import (
 	"encoding/json"
-	"fmt"
-	"github.com/NeowayLabs/dojo/api/model"
 	"net/http"
-	"os"
+
+	"github.com/NeowayLabs/dojo/api/model"
 )
 
-func check(e error) {
-	if e != nil {
-		panic(e)
-	}
+func main() {
+	// http.HandleFunc("/api/v1/user/new", newUserHandler)
+	// http.ListenAndServe(":8080", nil)
+	u := model.User{Name: "Banana", Password: "321"}
+	u.Save()
 }
 
 func newUserHandler(rw http.ResponseWriter, req *http.Request) {
@@ -22,19 +22,12 @@ func newUserHandler(rw http.ResponseWriter, req *http.Request) {
 	err := decoder.Decode(&u)
 	check(err)
 
-	fmt.Println(u)
-	f, err := os.OpenFile("db.json", os.O_APPEND|os.O_WRONLY, 0600)
-	check(err)
-	defer f.Close()
-
-	ju, err := json.Marshal(u)
-	check(err)
-
-	_, err = f.Write(ju)
-	check(err)
+	err2 := u.Save()
+	check(err2)
 }
 
-func main() {
-	http.HandleFunc("/api/v1/user/new", newUserHandler)
-	http.ListenAndServe(":8080", nil)
+func check(e error) {
+	if e != nil {
+		panic(e)
+	}
 }
