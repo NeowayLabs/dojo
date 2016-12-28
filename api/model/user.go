@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"errors"
 	"io/ioutil"
+	"net/http"
 	"os"
 )
 
@@ -15,8 +16,24 @@ type User struct {
 	Password string `json:"password"`
 }
 
-// Save stores user in db
-func (u User) Save() error {
+// UserNewHandler receives POST with user data in body & saves it in DB
+func UserNewHandler(rw http.ResponseWriter, req *http.Request) {
+	decoder := json.NewDecoder(req.Body)
+	defer req.Body.Close()
+
+	var u User
+	err := decoder.Decode(&u)
+	check(err)
+
+	err = u.store()
+	if err != nil {
+		http.Error(rw, err.Error(), 500)
+	} else {
+		rw.Write([]byte("Saved user " + u.Name))
+	}
+}
+
+func (u User) store() error {
 	users := openCollection()
 
 	for _, element := range users {
