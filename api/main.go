@@ -10,5 +10,6 @@ const entrypoint = "/api/v1"
 
 func main() {
 	http.HandleFunc(entrypoint+"/user/new", model.UserNewHandler)
+	http.HandleFunc(entrypoint+"/clock/hit", model.RegisterNewHandler)
 	http.ListenAndServe(":8080", nil)
 }

@@ -5,7 +5,6 @@ import (
 	"errors"
 	"io/ioutil"
 	"net/http"
-	"os"
 )
 
 const path = "db/users.json"
@@ -26,6 +25,7 @@ func UserNewHandler(rw http.ResponseWriter, req *http.Request) {
 	check(err)
 
 	err = u.store()
+
 	if err != nil {
 		http.Error(rw, err.Error(), 500)
 	} else {
@@ -34,7 +34,7 @@ func UserNewHandler(rw http.ResponseWriter, req *http.Request) {
 }
 
 func (u User) store() error {
-	users := openCollection()
+	users := u.openCollection()
 
 	for _, element := range users {
 		if element.Name == u.Name {
@@ -44,30 +44,18 @@ func (u User) store() error {
 
 	users = append(users, u)
 
-	saveCollection(users)
+	u.saveCollection(users)
 	return nil
 }
 
-func openCollection() []User {
-	if _, err := os.Stat(path); os.IsNotExist(err) { // when file doesn't exist yet
-		os.Mkdir("db", 0755) // TODO: extract from 'path' string
-		ioutil.WriteFile(path, []byte("[]"), 0644)
-	}
-
-	db, _ := ioutil.ReadFile(path)
+func (u User) openCollection() []User {
+	db := readFile(dbPath + "/users.json")
 	users := make([]User, 0)
 	json.Unmarshal(db, &users)
-
 	return users
 }
 
-func saveCollection(c []User) {
+func (u User) saveCollection(c []User) {
 	data, _ := json.MarshalIndent(c, "", "  ")
-	ioutil.WriteFile(path, data, 0644)
-}
-
-func check(e error) {
-	if e != nil {
-		panic(e)
-	}
+	ioutil.WriteFile(dbPath+"/users.json", data, 0644)
 }
