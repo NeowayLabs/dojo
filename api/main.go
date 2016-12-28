@@ -6,7 +6,9 @@ import (
 	"github.com/NeowayLabs/dojo/api/model"
 )
 
+const entrypoint = "/api/v1"
+
 func main() {
-	http.HandleFunc("/api/v1/user/new", model.UserNewHandler)
+	http.HandleFunc(entrypoint+"/user/new", model.UserNewHandler)
 	http.ListenAndServe(":8080", nil)
 }
