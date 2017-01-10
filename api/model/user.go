@@ -51,11 +51,17 @@ func (u User) store() error {
 func (u User) openCollection() []User {
 	db := readFile(dbPath + "/users.json")
 	users := make([]User, 0)
-	json.Unmarshal(db, &users)
+
+	err := json.Unmarshal(db, &users)
+	check(err)
+
 	return users
 }
 
 func (u User) saveCollection(c []User) {
-	data, _ := json.MarshalIndent(c, "", "  ")
-	ioutil.WriteFile(dbPath+"/users.json", data, 0644)
+	data, err := json.MarshalIndent(c, "", "  ")
+	check(err)
+
+	err = ioutil.WriteFile(dbPath+"/users.json", data, 0644)
+	check(err)
 }

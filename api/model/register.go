@@ -43,11 +43,17 @@ func (r Register) store() error {
 func (r Register) openCollection() []Register {
 	db := readFile(dbPath + "/registers.json")
 	registers := make([]Register, 0)
-	json.Unmarshal(db, &registers)
+
+	err := json.Unmarshal(db, &registers)
+	check(err)
+
 	return registers
 }
 
 func (r Register) saveCollection(c []Register) {
-	data, _ := json.MarshalIndent(c, "", "  ")
-	ioutil.WriteFile(dbPath+"/registers.json", data, 0644)
+	data, err := json.MarshalIndent(c, "", "  ")
+	check(err)
+
+	err = ioutil.WriteFile(dbPath+"/registers.json", data, 0644)
+	check(err)
 }

@@ -19,6 +19,7 @@ func readFile(path string) []byte {
 		ioutil.WriteFile(path, []byte("[]"), 0644) // create empty json array
 	}
 
-	db, _ := ioutil.ReadFile(path)
+	db, err := ioutil.ReadFile(path)
+	check(err)
 	return db
 }
