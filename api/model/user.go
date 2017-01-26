@@ -3,11 +3,8 @@ package model
 import (
 	"encoding/json"
 	"errors"
-	"io/ioutil"
 	"net/http"
 )
-
-const path = "db/users.json"
 
 // User model represents an item in the user DB
 type User struct {
@@ -49,7 +46,7 @@ func (u User) store() error {
 }
 
 func (u User) openCollection() []User {
-	db := readFile(dbPath + "/users.json")
+	db := readFile("users.json")
 	users := make([]User, 0)
 
 	err := json.Unmarshal(db, &users)
@@ -62,6 +59,5 @@ func (u User) saveCollection(c []User) {
 	data, err := json.MarshalIndent(c, "", "  ")
 	check(err)
 
-	err = ioutil.WriteFile(dbPath+"/users.json", data, 0644)
-	check(err)
+	writeFile("users.json", data)
 }

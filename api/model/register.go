@@ -3,7 +3,6 @@ package model
 import (
 	"encoding/json"
 	"errors"
-	"io/ioutil"
 	"net/http"
 	"time"
 )
@@ -41,7 +40,7 @@ func (r Register) store() error {
 }
 
 func (r Register) openCollection() []Register {
-	db := readFile(dbPath + "/registers.json")
+	db := readFile("registers.json")
 	registers := make([]Register, 0)
 
 	err := json.Unmarshal(db, &registers)
@@ -54,6 +53,5 @@ func (r Register) saveCollection(c []Register) {
 	data, err := json.MarshalIndent(c, "", "  ")
 	check(err)
 
-	err = ioutil.WriteFile(dbPath+"/registers.json", data, 0644)
-	check(err)
+	writeFile("registers.json", data)
 }

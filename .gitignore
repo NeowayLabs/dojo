@@ -2,7 +2,7 @@
 client/reports
 
 # API store
-api/db
+api/_db
 
 # Logs
 logs
