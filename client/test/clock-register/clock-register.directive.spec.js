@@ -33,12 +33,29 @@ describe('dojo clock register directive', function () {
       expect(hitThePointBtn).toBeDefined();
     });
 
-    it('should prevent multiple clicks', function () {
+    describe("given user is starting the day", function () {
+      fit("should show empty list", function () {
+        var list = element.find("#daily-list");
+        console.log(list.html());
+        expect(list).toBeDefined();
+        expect(list.is("ul")).toBeTrue();
+      })
+    })
+
+    it('should hit the point', function () {
+      hitThePointBtn.click();
+
+      expect()
+    });
+
+    it('should ignore multiple clicks at the same second', function () {
       // Impedir chamar a parada de bater o ponto em menos de um minuto
     });
 
-    it('should hit the point', function () {
+    it('should prevent multiple clicks at the same minute', function () {
+      // Impedir chamar a parada de bater o ponto em menos de um minuto
     });
+
 
     it('should handle "corujão" situations', function () {
     });
