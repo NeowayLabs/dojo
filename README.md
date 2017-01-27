@@ -15,6 +15,30 @@ Later, we plan to take some "bad examples" and code tests for them, helping it e
 # Further Info
 This repo is currently a work in progress regarding it's scope. Feel free to send us your suggestions, complains, difficulties and most importantly, communicate how you are promoting quality in your projects :+1:
 
+## Contributing Tips
+Want to dive in & get your hands on coding? The project is organized into two main folders: **api** & **client**.
+### **Frontend** development
+Our client app src together with it's package configuration are all stored at `client`.  
+Having [npm](https://www.npmjs.com/) installed in your host, there goes some basic steps to get you running it:
+```bash
+cd client
+npm install
+npm test
+#or
+npm run watch:test
+```
+
+### **Backend** development
+A [Go](https://golang.org/) backend implementation resides in `api`.  
+To start a working server or run existing tests:
+```bash
+cd api
+go run main.go
+# Test it
+cd model
+go test
+```
+
 ## Some disclaimer about our time-tracking app
 We are still discussing which code standards to follow, what tools to use, how write our test cases and so on... Be part of it contributing with your ideas!
 
