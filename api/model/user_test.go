@@ -2,7 +2,10 @@ package model
 
 import (
 	"bytes"
+	"io/ioutil"
 	"net/http/httptest"
+	"path"
+	"strings"
 	"testing"
 )
 
@@ -23,6 +26,22 @@ func TestNewUser(t *testing.T) {
 		if rw.Body.String() != "Saved user octavio" {
 			t.Error("Wrong response body")
 		}
+
+		content, err := ioutil.ReadFile(path.Join(dbPath, "users.json"))
+		if err != nil {
+			t.Error(err)
+		}
+
+		expected := []byte(strings.Replace(`[
+		  {
+		    "name": "octavio",
+		    "password": "588a56af5df74a9f36b09575"
+		  }
+		]`, "\t", "", -1))
+
+		if !bytes.Equal(content, expected) {
+			t.Error("DB file doesn't mach expected data")
+		}
 	})
 
 	t.Run("alredy existing user", func(t *testing.T) {
@@ -38,6 +57,22 @@ func TestNewUser(t *testing.T) {
 
 		if rw.Body.String() != "User already exists\n" {
 			t.Error("Wrong response body")
+		}
+
+		content, err := ioutil.ReadFile(path.Join(dbPath, "users.json"))
+		if err != nil {
+			t.Error(err)
+		}
+
+		expected := []byte(strings.Replace(`[
+		  {
+		    "name": "octavio",
+		    "password": "588a56af5df74a9f36b09575"
+		  }
+		]`, "\t", "", -1))
+
+		if !bytes.Equal(content, expected) {
+			t.Error("DB file doesn't mach expected data")
 		}
 	})
 
