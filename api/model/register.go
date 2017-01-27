@@ -28,7 +28,7 @@ func (r Register) store() error {
 	registers := r.openCollection()
 
 	for _, element := range registers {
-		if element.Time == r.Time {
+		if registerTimeEquals(element.Time, r.Time) {
 			return errors.New("Register already exists")
 		}
 	}
@@ -37,6 +37,10 @@ func (r Register) store() error {
 
 	r.saveCollection(registers)
 	return nil
+}
+
+func registerTimeEquals(a, b time.Time) bool {
+	return a.Year() == b.Year() && a.Day() == b.Day() && a.Minute() == b.Minute()
 }
 
 func (r Register) openCollection() []Register {
