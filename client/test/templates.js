@@ -11,7 +11,7 @@ angular.module('dojo.templates', [])
   $templateCache.put('client/src/clock-register/clock-register.html',
     '<div>\n' +
     '  <svg id="hitThePointBtn" ng-click="hitThePoint()"></svg>\n' +
-    '  <ul ng-repeat="mark in markings">\n' +
+    '  <ul id="daily-list" ng-repeat="mark in markings">\n' +
     '    <li>{{ mark }}</li>\n' +
     '  </ul>\n' +
     '  <span>Horas trabalhadas: <strong>+ {{ day.workedHours }}</strong></span>\n' +
