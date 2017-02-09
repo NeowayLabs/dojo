@@ -13,7 +13,7 @@ module.exports = function (config) {
     ],
     exclude: [],
 
-    reporters: ['mocha', 'html'],
+    reporters: ['mocha'],
 
     mochaReporter: { // info at https://github.com/litixsoft/karma-mocha-reporter
       output: 'autowatch'
