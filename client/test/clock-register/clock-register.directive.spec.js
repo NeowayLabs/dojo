@@ -5,7 +5,8 @@ describe('dojo clock register directive', function () {
       $httpBackend,
       $templateCache,
       element,
-      view;
+      view,
+      hitThePointBtn;
 
   beforeEach(function () {
     module('dojo');
@@ -26,26 +27,31 @@ describe('dojo clock register directive', function () {
     expect(element.html()).toBeDefined();
   });
 
-  describe('hit the point button', function () {
-    it('should exist', function () {
-      var hitThePointBtn = element.find('#hitThePointBtn')[0];
-
-      expect(hitThePointBtn).toBeDefined();
+  fdescribe('hitting the point', function () {
+    beforeEach(function () {
+      hitThePointBtn = element.find('#hitThePointBtn');
     });
 
-    describe("given user is starting the day", function () {
-      fit("should show empty list", function () {
-        var list = element.find("#daily-list");
-        console.log(list.html());
-        expect(list).toBeDefined();
-        expect(list.is("ul")).toBeTrue();
-      })
-    })
+    it('should exist a button', function () {
+      expect(hitThePointBtn[0]).toBeDefined();
+    });
 
-    it('should hit the point', function () {
-      hitThePointBtn.click();
+    describe('given user is starting the day', function () {
+      it('should show empty list', function () {
+        var list = element.find('#daily-list');
+        expect(list[0]).toBeDefined();
+      });
 
-      expect()
+      it('after clicking the button, should show the time in the list', function () {
+        $httpBackend.expect('POST', '/api/v1/clock/hit').respond(200, {time: '16:20:00'});
+        hitThePointBtn.click();
+        $httpBackend.flush();
+
+        var firstItem = element.find('#daily-list :eq(0)');
+        expect(firstItem.text()).toBe('16:20:00');
+      });
+
+      // TODO: to be continued
     });
 
     it('should ignore multiple clicks at the same second', function () {

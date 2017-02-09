@@ -4,11 +4,14 @@
   angular
     .module('dojo')
     .controller('clockRegister', ['$scope', '$http', function ($scope, $http) {
+      $scope.markings = [];
+
       $scope.hitThePoint = function hitThePoint() {
         $http
           .post('/api/v1/clock/hit', $scope.user)
-          .then(function (data) {
+          .then(function (res) {
             $scope.message = 'Você bateu o ponto com sucesso';
+            $scope.markings.push(res.data.time);
           }).catch(function (error) {
             var status = error.status;
 

@@ -1,7 +1,7 @@
 <div>
   <svg id="hitThePointBtn" ng-click="hitThePoint()"></svg>
-  <ul id="daily-list" ng-repeat="mark in markings">
-    <li>{{ mark }}</li>
+  <ul id="daily-list">
+    <li ng-repeat="mark in markings">{{ mark }}</li>
   </ul>
   <span>Horas trabalhadas: <strong>+ {{ day.workedHours }}</strong></span>
   <span>Saldo do dia: <strong>+ {{ day.balanceHours }}</strong></span>
