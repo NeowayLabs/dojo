@@ -7,7 +7,7 @@
       return {
         controller: 'clockRegister',
         restrict: 'E',
-        templateUrl: 'client/src/clock-register/clock-register.html'
+        templateUrl: 'src/clock-register/clock-register.html'
       };
     }]);
 })();

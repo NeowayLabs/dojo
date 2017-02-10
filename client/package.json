@@ -1,0 +1,59 @@
+{
+  "name": "dojo",
+  "version": "0.0.1",
+  "description": "Neoway's first dojo project",
+  "main": "src/app.js",
+  "scripts": {
+    "lint": "jshint src && jscs src",
+    "test": "npm run templates && karma start karma.conf.js --single-run",
+    "watch:test": "npm run templates && karma start karma.conf.js --auto-watch && watch -p 'src/**/*.html' -c 'npm run templates'",
+    "templates": "npm-html2js -i 'src/**/*.html' -o 'src/templates.js' -m 'dojo.templates'"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/NeowayLabs/dojo.git"
+  },
+  "keywords": [
+    "test",
+    "dojo",
+    "frontend"
+  ],
+  "author": "Octávio Richter <octavio.richter@neoway.com.br>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/NeowayLabs/dojo/issues"
+  },
+  "homepage": "https://github.com/NeowayLabs/dojo#readme",
+  "devDependencies": {
+    "angular-mocks": "1.5.8",
+    "jasmine": "2.4.1",
+    "jquery": "3.1.0",
+    "jscs": "3.0.7",
+    "jshint": "2.9.2",
+    "karma": "1.1.2",
+    "karma-html-reporter": "0.2.7",
+    "karma-jasmine": "1.0.2",
+    "karma-mocha-reporter": "2.1.0",
+    "karma-phantomjs-launcher": "1.0.1",
+    "node-watch": "0.4.0",
+    "npm-html2js": "0.1.8",
+    "phantomjs-prebuilt": "2.1.8",
+    "watch-cli": "0.2.1"
+  },
+  "dependencies": {
+    "angular": "1.5.8",
+    "angular-route": "1.5.8"
+  },
+  "jshintConfig": {
+    "jasmine": true,
+    "browser": true,
+    "phantom": true
+  },
+  "jscsConfig": {
+    "preset": "crockford",
+    "validateIndentation": 2,
+    "requireMultipleVarDecl": false,
+    "disallowDanglingUnderscores": false,
+    "excludeFiles": ["src/templates.js"]
+  }
+}

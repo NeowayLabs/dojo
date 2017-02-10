@@ -7,7 +7,7 @@
       return {
         controller: 'authentication',
         restrict: 'E',
-        templateUrl: 'client/src/authentication/authentication-form.html'
+        templateUrl: 'src/authentication/authentication-form.html'
       };
     }]);
 })();
