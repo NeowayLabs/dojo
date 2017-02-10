@@ -7,9 +7,9 @@ module.exports = function (config) {
       {pattern: 'node_modules/jquery/dist/jquery.js', watched: false},
       {pattern: 'node_modules/angular/angular.js', watched: false},
       {pattern: 'node_modules/angular-mocks/angular-mocks.js', watched: false},
-      'client/src/**/*.js',
-      'client/test/**/*.js',
-      'client/**/*.html'
+      'src/**/*.html',
+      'src/**/!(*.spec).js',
+      'src/**/*.spec.js'
     ],
     exclude: [],
 
@@ -20,7 +20,7 @@ module.exports = function (config) {
     },
 
     htmlReporter: { // info at https://github.com/dtabuenc/karma-html-reporter
-      outputDir: 'client/test/reports',
+      outputDir: 'reports',
       namedFiles: true,
       pageTitle: 'Dojo App Specs',
       urlFriendlyName: true,

@@ -1,27 +1,22 @@
-'use strict';
-
 describe('dojo auth directive', function () {
-  var authenticationForm,
-      $compile,
-      $rootScope,
-      $httpBackend,
-      $templateCache,
-      element,
-      view;
+  var scope;
+  var element;
+  var view;
+  var $compile;
+  var $httpBackend;
 
   beforeEach(function () {
     module('dojo');
     module('dojo.templates');
 
-    inject(function (_$compile_, _$rootScope_, _$httpBackend_, _$templateCache_) {
+    inject(function (_$compile_, $rootScope, _$httpBackend_) {
       $compile = _$compile_;
-      $rootScope = _$rootScope_;
+      scope = $rootScope.$new();
       $httpBackend = _$httpBackend_;
-      $templateCache = _$templateCache_;
     });
 
-    element = $compile('<authentication-form></authentication-form>')($rootScope);
-    $rootScope.$digest();
+    element = $compile('<authentication-form></authentication-form>')(scope);
+    scope.$digest();
   });
 
   it('should exist', function () {

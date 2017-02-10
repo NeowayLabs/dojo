@@ -2,16 +2,16 @@
   "name": "dojo",
   "version": "0.0.1",
   "description": "Neoway's first dojo project",
-  "main": "index.js",
+  "main": "src/app.js",
   "scripts": {
+    "lint": "jshint src && jscs src",
     "test": "npm run templates && karma start karma.conf.js --single-run",
-    "watch:test": "karma start karma.conf.js --auto-watch",
-    "watch:templates": "npm run templates && watch -p 'client/src/**/*.html' -c 'npm run templates'",
-    "templates": "npm-html2js -i 'client/src/**/*.html' -o 'client/test/templates.js' -m 'dojo.templates'"
+    "watch:test": "npm run templates && karma start karma.conf.js --auto-watch && watch -p 'src/**/*.html' -c 'npm run templates'",
+    "templates": "npm-html2js -i 'src/**/*.html' -o 'src/templates.js' -m 'dojo.templates'"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/OctavioBR/dojo.git"
+    "url": "git+https://github.com/NeowayLabs/dojo.git"
   },
   "keywords": [
     "test",
@@ -21,9 +21,9 @@
   "author": "Octávio Richter <octavio.richter@neoway.com.br>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/OctavioBR/dojo/issues"
+    "url": "https://github.com/NeowayLabs/dojo/issues"
   },
-  "homepage": "https://github.com/OctavioBR/dojo#readme",
+  "homepage": "https://github.com/NeowayLabs/dojo#readme",
   "devDependencies": {
     "angular-mocks": "1.5.8",
     "jasmine": "2.4.1",
@@ -47,11 +47,13 @@
   "jshintConfig": {
     "jasmine": true,
     "browser": true,
-    "phantom": true,
-    "node": true
+    "phantom": true
   },
   "jscsConfig": {
     "preset": "crockford",
-    "validateIndentation": 2
+    "validateIndentation": 2,
+    "requireMultipleVarDecl": false,
+    "disallowDanglingUnderscores": false,
+    "excludeFiles": ["src/templates.js"]
   }
 }

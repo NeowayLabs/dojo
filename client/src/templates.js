@@ -1,6 +1,6 @@
 angular.module('dojo.templates', [])
   .run(['$templateCache', function($templateCache) {
-    $templateCache.put('client/src/authentication/authentication-form.html',
+    $templateCache.put('src/authentication/authentication-form.html',
     '<div id="auth-form">\n' +
     '  <input id="login" type="text" placeholder="login" ng-model="user.login">\n' +
     '  <input id="password" type="password" placeholder="senha" ng-model="user.password">\n' +
@@ -8,7 +8,7 @@ angular.module('dojo.templates', [])
     '  <p class="message">{{message}}</p>\n' +
     '</div>\n' +
     '')
-  $templateCache.put('client/src/clock-register/clock-register.html',
+  $templateCache.put('src/clock-register/clock-register.html',
     '<div>\n' +
     '  <svg id="hitThePointBtn" ng-click="hitThePoint()"></svg>\n' +
     '  <ul id="daily-list">\n' +

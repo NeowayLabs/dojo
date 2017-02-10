@@ -1,5 +1,8 @@
 # Test reports
-client/test/reports
+client/reports
+
+# API store
+api/_db
 
 # Logs
 logs

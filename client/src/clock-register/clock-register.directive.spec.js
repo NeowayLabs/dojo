@@ -43,11 +43,14 @@ describe('dojo clock register directive', function () {
       });
 
       it('after clicking the button, should show the time in the list', function () {
+        var firstItem;
+
         $httpBackend.expect('POST', '/api/v1/clock/hit').respond(200, {time: '16:20:00'});
         hitThePointBtn.click();
         $httpBackend.flush();
 
-        var firstItem = element.find('#daily-list :eq(0)');
+        firstItem = element.find('#daily-list :eq(0)');
+
         expect(firstItem.text()).toBe('16:20:00');
       });
 
