@@ -72,6 +72,8 @@ describe('dojo clock register directive', function () {
       expect(feedbackMessage).toBeDefined();
       expect(feedbackMessage.text()).toBe('Você é um banana!');
       expect(feedbackMessage.hasClass('error')).toBe(true);
+
+      // TODO: Message should disappear after some time...
     });
 
     it('should prevent multiple clicks at the same minute', function () {
