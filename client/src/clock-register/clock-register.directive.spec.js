@@ -56,7 +56,7 @@ describe('dojo clock register directive', function () {
     });
 
     fit('should ignore multiple clicks at the same second', function () {
-      var errorItem;
+      var feedbackMessage;
 
       // Impedir chamar a parada de bater o ponto em menos de um minuto
       $httpBackend.when('POST', '/api/v1/clock/hit').respond(200, {time: '16:20:00'});
@@ -67,11 +67,11 @@ describe('dojo clock register directive', function () {
       hitThePointBtn.click();
       $httpBackend.flush();
 
-      errorItem = element.find('#feedback-message');
+      feedbackMessage = element.find('#feedback-message');
 
-      expect(errorItem).toBeDefined();
-      expect(errorItem.text()).toBe('Você é um banana!');
-      expect(errorItem.hasClass('error')).toBe(true);
+      expect(feedbackMessage).toBeDefined();
+      expect(feedbackMessage.text()).toBe('Você é um banana!');
+      expect(feedbackMessage.hasClass('error')).toBe(true);
     });
 
     it('should prevent multiple clicks at the same minute', function () {

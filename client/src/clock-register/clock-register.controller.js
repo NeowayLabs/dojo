@@ -6,14 +6,21 @@
     .controller('clockRegister', ['$scope', '$http', function ($scope, $http) {
       $scope.markings = [];
 
+      function setMessage(text, type) {
+        $scope.message = {
+          text: text,
+          type: type
+        };
+      }
+
       $scope.hitThePoint = function hitThePoint() {
         $http
           .post('/api/v1/clock/hit', $scope.user)
           .then(function (res) {
             if ($scope.markings.indexOf(res.data.time) > -1) {
-              $scope.message = {text: 'Você é um banana!', type: 'error'};
+              setMessage('Você é um banana!', 'error');
             } else {
-              $scope.message = {text: 'Você bateu o ponto com sucesso!', type: 'success'};
+              setMessage('Você bateu o ponto com sucesso!', 'success');
               $scope.markings.push(res.data.time);
             }
           }).catch(function (error) {
