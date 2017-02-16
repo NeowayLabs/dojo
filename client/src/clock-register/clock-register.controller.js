@@ -10,8 +10,12 @@
         $http
           .post('/api/v1/clock/hit', $scope.user)
           .then(function (res) {
-            $scope.message = 'Você bateu o ponto com sucesso';
-            $scope.markings.push(res.data.time);
+            if ($scope.markings.indexOf(res.data.time) > -1) {
+              $scope.message = {text: 'Você é um banana!', type: 'error'};
+            } else {
+              $scope.message = {text: 'Você bateu o ponto com sucesso!', type: 'success'};
+              $scope.markings.push(res.data.time);
+            }
           }).catch(function (error) {
             var status = error.status;
 

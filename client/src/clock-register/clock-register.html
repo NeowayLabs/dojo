@@ -1,7 +1,8 @@
 <div>
   <svg id="hitThePointBtn" ng-click="hitThePoint()"></svg>
+  <p class="{{message.type}}" id="feedback-message">{{message.text}}</p>
   <ul id="daily-list">
-    <li ng-repeat="mark in markings">{{ mark }}</li>
+    <li ng-repeat="mark in markings track by $index">{{ mark }}</li>
   </ul>
   <span>Horas trabalhadas: <strong>+ {{ day.workedHours }}</strong></span>
   <span>Saldo do dia: <strong>+ {{ day.balanceHours }}</strong></span>
