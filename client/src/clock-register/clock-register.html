@@ -1,6 +1,6 @@
 <div>
   <svg id="hitThePointBtn" ng-click="hitThePoint()"></svg>
-  <p class="{{message.type}}" id="feedback-message">{{message.text}}</p>
+  <p ng-if="message.text" class="{{message.type}}" id="feedback-message">{{message.text}}</p>
   <ul id="daily-list">
     <li ng-repeat="mark in markings track by $index">{{ mark }}</li>
   </ul>

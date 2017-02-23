@@ -4,6 +4,7 @@ describe('dojo clock register directive', function () {
       $rootScope,
       $httpBackend,
       $templateCache,
+      $timeout,
       element,
       view,
       hitThePointBtn;
@@ -12,8 +13,9 @@ describe('dojo clock register directive', function () {
     module('dojo');
     module('dojo.templates');
 
-    inject(function (_$compile_, _$rootScope_, _$httpBackend_, _$templateCache_) {
+    inject(function (_$compile_, _$timeout_, _$rootScope_, _$httpBackend_, _$templateCache_) {
       $compile = _$compile_;
+      $timeout = _$timeout_;
       $rootScope = _$rootScope_;
       $httpBackend = _$httpBackend_;
       $templateCache = _$templateCache_;
@@ -27,7 +29,7 @@ describe('dojo clock register directive', function () {
     expect(element.html()).toBeDefined();
   });
 
-  fdescribe('hitting the point', function () {
+  describe('hitting the point', function () {
     beforeEach(function () {
       hitThePointBtn = element.find('#hitThePointBtn');
     });
@@ -53,33 +55,46 @@ describe('dojo clock register directive', function () {
 
         expect(firstItem.text()).toBe('16:20:00');
       });
+
+      it('error paths?', function () {
+        // TODO
+      });
+
+      describe('multiple clicks', function () {
+        beforeEach(function () {
+          // Impedir chamar a parada de bater o ponto em menos de um minuto
+          $httpBackend.when('POST', '/api/v1/clock/hit').respond(200, {time: '16:20:00'});
+
+          hitThePointBtn.click();
+          $httpBackend.flush();
+
+          hitThePointBtn.click();
+          $httpBackend.flush();
+        });
+
+        it('should ignore multiple clicks at the same second', function () {
+          var feedbackMessage;
+          feedbackMessage = element.find('#feedback-message');
+
+          expect(feedbackMessage).toBeDefined();
+          expect(feedbackMessage.text()).toBe('Você é um banana!');
+          expect(feedbackMessage.hasClass('error')).toBe(true);
+
+          // TODO: Message should disappear after some time...
+        });
+
+        it('should remove the warning message after 10s', function () {
+          feedbackMessage = element.find('#feedback-message');
+          expect(feedbackMessage.text()).toBe('Você é um banana!');
+
+          // triggers all $timeout function calls
+          $timeout.flush()
+
+          feedbackMessage = element.find('#feedback-message');
+          expect(feedbackMessage[0]).toBeUndefined();
+        });
+      });
     });
-
-    fit('should ignore multiple clicks at the same second', function () {
-      var feedbackMessage;
-
-      // Impedir chamar a parada de bater o ponto em menos de um minuto
-      $httpBackend.when('POST', '/api/v1/clock/hit').respond(200, {time: '16:20:00'});
-
-      hitThePointBtn.click();
-      $httpBackend.flush();
-
-      hitThePointBtn.click();
-      $httpBackend.flush();
-
-      feedbackMessage = element.find('#feedback-message');
-
-      expect(feedbackMessage).toBeDefined();
-      expect(feedbackMessage.text()).toBe('Você é um banana!');
-      expect(feedbackMessage.hasClass('error')).toBe(true);
-
-      // TODO: Message should disappear after some time...
-    });
-
-    it('should prevent multiple clicks at the same minute', function () {
-      // Impedir chamar a parada de bater o ponto em menos de um minuto
-    });
-
 
     it('should handle "corujão" situations', function () {
     });
