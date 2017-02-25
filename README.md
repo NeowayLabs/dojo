@@ -1,4 +1,5 @@
-# Dojo [![Build Status](https://travis-ci.org/NeowayLabs/dojo.svg?branch=master)](https://travis-ci.org/NeowayLabs/dojo)
+# Dojo [![Build Status](https://travis-ci.org/NeowayLabs/dojo.svg?branch=master)](https://travis-ci.org/NeowayLabs/dojo) [![codecov](https://codecov.io/gh/NeowayLabs/dojo/branch/master/graph/badge.svg)](https://codecov.io/gh/NeowayLabs/dojo)
+
 ## Proposal
 To improve our mindset of writing well tested code, following **T**est **D**riven **D**evelopment, we believe that hands on experience is the quickest way of learning how to write tests that will help guarantee quality for our apps.  
 It started focusing on frontend code based on _AngularJS_ because it became a great gap lacking unit testing the UIs in most of our teams. We are also developing server APIs to support client actions, making the app usefull. Octávio chose to develop the API in _Go_ because he wants to boot up his necessity on learning the language, focusing on _TDD_ principles, of course :innocent:
