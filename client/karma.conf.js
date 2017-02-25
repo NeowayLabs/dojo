@@ -13,10 +13,24 @@ module.exports = function (config) {
     ],
     exclude: [],
 
-    reporters: ['mocha'],
+    preprocessors: {
+      // (these files will be instrumented by Istanbul)
+      'src/**/*.js': ['coverage']
+    },
+
+    reporters: ['mocha', 'coverage'],
 
     mochaReporter: { // info at https://github.com/litixsoft/karma-mocha-reporter
       output: 'autowatch'
+    },
+
+    coverageReporter: {
+        reporters: [
+            // generates ./coverage/lcov.info
+            {type:'lcovonly', subdir: '.'},
+            // generates ./coverage/coverage-final.json
+            {type:'json', subdir: '.'},
+        ]
     },
 
     htmlReporter: { // info at https://github.com/dtabuenc/karma-html-reporter

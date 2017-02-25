@@ -1,4 +1,7 @@
-# Dojo [![Build Status](https://travis-ci.org/NeowayLabs/dojo.svg?branch=master)](https://travis-ci.org/NeowayLabs/dojo) [![codecov](https://codecov.io/gh/NeowayLabs/dojo/branch/master/graph/badge.svg)](https://codecov.io/gh/NeowayLabs/dojo)
+# Dojo
+
+[![Build Status](https://travis-ci.org/NeowayLabs/dojo.svg?branch=master)](https://travis-ci.org/NeowayLabs/dojo)
+[![codecov](https://codecov.io/gh/NeowayLabs/dojo/branch/master/graph/badge.svg)](https://codecov.io/gh/NeowayLabs/dojo)
 
 ## Proposal
 To improve our mindset of writing well tested code, following **T**est **D**riven **D**evelopment, we believe that hands on experience is the quickest way of learning how to write tests that will help guarantee quality for our apps.  
