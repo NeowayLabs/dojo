@@ -31,7 +31,8 @@ describe('dojo clock register controller', function () {
 
       it('should show success message', function () {
         $httpBackend.flush();
-        expect($scope.message).toEqual('Você bateu o ponto com sucesso');
+        expect($scope.message.text).toEqual('Você bateu o ponto com sucesso!');
+        expect($scope.message.type).toEqual('success');
       });
     });
 
@@ -40,21 +41,24 @@ describe('dojo clock register controller', function () {
         $httpBackend.when('POST', '/api/v1/clock/hit').respond(401, 'Houve algum problema na autenticação do seus dados.');
         $scope.hitThePoint();
         $httpBackend.flush();
-        expect($scope.message).toEqual('Houve algum problema na autenticação do seus dados.');
+        expect($scope.message.text).toEqual('Houve algum problema na autenticação do seus dados.');
+        expect($scope.message.type).toEqual('error');
       });
 
       it('server offline', function () {
         $httpBackend.when('POST', '/api/v1/clock/hit').respond(404, {});
         $scope.hitThePoint();
         $httpBackend.flush();
-        expect($scope.message).toEqual('Servidor offline.');
+        expect($scope.message.text).toEqual('Servidor offline.');
+        expect($scope.message.type).toEqual('error');
       });
 
       it('response error', function () {
         $httpBackend.when('POST', '/api/v1/clock/hit').respond(500, {});
         $scope.hitThePoint();
         $httpBackend.flush();
-        expect($scope.message).toEqual('Aconteceu algum erro com o servidor :(');
+        expect($scope.message.text).toEqual('Aconteceu algum erro com o servidor :(');
+        expect($scope.message.type).toEqual('error');
       });
     });
   });
