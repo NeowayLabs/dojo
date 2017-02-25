@@ -1,0 +1,17 @@
+os:
+  - linux
+  - osx
+
+language: go
+
+go:
+  - tip
+  - 1.8
+  - 1.7
+# install:
+#   - go get -v golang.org/x/exp/ebnf
+#   - make build
+script:
+  - make test
+after_success:
+  - bash <(curl -s https://codecov.io/bash)
