@@ -10,3 +10,6 @@ test-client:
 	npm --prefix client/ test
 
 test: test-api test-client
+
+install:
+	npm --prefix client/ install
