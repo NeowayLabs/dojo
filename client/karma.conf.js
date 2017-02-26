@@ -15,7 +15,7 @@ module.exports = function (config) {
 
     preprocessors: {
       // (these files will be instrumented by Istanbul)
-      'src/**/*.js': ['coverage']
+      'src/**/!(*.spec).js': ['coverage']
     },
 
     reporters: ['mocha', 'coverage'],
@@ -26,8 +26,6 @@ module.exports = function (config) {
 
     coverageReporter: {
         reporters: [
-            // generates ./coverage/lcov.info
-            // {type:'lcovonly', subdir: '.'},
             // generates ./coverage/coverage-final.json
             {type:'json', subdir: '.'},
         ]
