@@ -9,7 +9,7 @@ go:
   - 1.8
   - 1.7
 
-node_js: "7.5.0"
+node_js: "6"
 
 script:
   - make test-api
