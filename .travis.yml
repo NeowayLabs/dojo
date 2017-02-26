@@ -8,9 +8,11 @@ go:
   - tip
   - 1.8
   - 1.7
-# install:
-#   - make build
+
+node_js: "7.5.0"
+
 script:
-  - make test
-after_success:
-  - bash <(curl -s https://codecov.io/bash)
+  - make test-api
+  - bash <(curl -s https://codecov.io/bash) -cF api
+  - make test-client
+  - bash <(curl -s https://codecov.io/bash) -cF client
