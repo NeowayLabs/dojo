@@ -1,0 +1,22 @@
+os:
+  - linux
+  - osx
+
+language: go
+
+go:
+  - tip
+  - 1.8
+  - 1.7
+
+before_install:
+  - nvm install 7.5.0
+
+install:
+  - make install
+
+script:
+  - make test-api
+  - bash <(curl -s https://codecov.io/bash) -cF api
+  - make test-client
+  - bash <(curl -s https://codecov.io/bash) -cF client

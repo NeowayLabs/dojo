@@ -36,8 +36,12 @@ func writeFile(fileName string, data []byte) {
 // clearDB empties the db folder
 func clearDB() {
 	d, err := os.Open(dbPath)
+	if os.IsNotExist(err) {
+		os.Mkdir(dbPath, 0755)
+		d, err = os.Open(dbPath)
+	}	
 	check(err)
-
+	
 	defer d.Close()
 	names, err := d.Readdirnames(-1)
 	check(err)

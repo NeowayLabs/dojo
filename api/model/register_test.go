@@ -22,7 +22,7 @@ func TestRegisters(t *testing.T) {
 		// e.g. "Saved register 2017-01-27 11:08:22.637121123 -0200 BRST"
 		var regx = regexp.MustCompile(`Saved register \d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}.\d+ -\d+ \w+`)
 		if !regx.MatchString(rw.Body.String()) {
-			t.Error("Wrong response body")
+			t.Errorf("Wrong response body: '%s'", rw.Body.String())
 		}
 	})
 

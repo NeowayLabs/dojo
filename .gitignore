@@ -1,8 +1,12 @@
 # Test reports
 client/reports
 
-# API store
+# API store and binary
 api/_db
+api/api
+
+# API coverage report
+go-coverage.txt
 
 # Logs
 logs

@@ -31,6 +31,7 @@
     "jscs": "3.0.7",
     "jshint": "2.9.2",
     "karma": "1.1.2",
+    "karma-coverage": "^1.1.1",
     "karma-html-reporter": "0.2.7",
     "karma-jasmine": "1.0.2",
     "karma-mocha-reporter": "2.1.0",
@@ -54,6 +55,8 @@
     "validateIndentation": 2,
     "requireMultipleVarDecl": false,
     "disallowDanglingUnderscores": false,
-    "excludeFiles": ["src/templates.js"]
+    "excludeFiles": [
+      "src/templates.js"
+    ]
   }
 }
