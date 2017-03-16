@@ -1,3 +1,5 @@
+'use strict';
+
 describe('dojo clock register directive', function () {
   var authenticationForm,
       $compile,
@@ -44,20 +46,43 @@ describe('dojo clock register directive', function () {
         expect(list[0]).toBeDefined();
       });
 
-      it('after clicking the button, should show the time in the list', function () {
-        var firstItem;
+      describe('after clicking the button', function () {
+        it('in case of success, should show the time in the list', function () {
+          var firstItem;
 
-        $httpBackend.expect('POST', '/api/v1/clock/hit').respond(200, {time: '16:20:00'});
-        hitThePointBtn.click();
-        $httpBackend.flush();
+          $httpBackend.expect('POST', '/api/v1/clock/hit').respond(200, {time: '16:20:00'});
+          hitThePointBtn.click();
+          $httpBackend.flush();
 
-        firstItem = element.find('#daily-list :eq(0)');
+          firstItem = element.find('#daily-list :eq(0)');
 
-        expect(firstItem.text()).toBe('16:20:00');
-      });
+          expect(firstItem.text()).toBe('16:20:00');
+        });
 
-      it('error paths?', function () {
-        // TODO
+        it('if session is lost, should warn the user with message', function () {
+          var feedbackMessage;
+          $httpBackend.expect('POST', '/api/v1/clock/hit').respond(401, 'Authentication Failed');
+          hitThePointBtn.click();
+          $httpBackend.flush();
+
+          feedbackMessage = element.find('#feedback-message');
+
+          expect(feedbackMessage).toBeDefined();
+          expect(feedbackMessage.text()).toBe('Houve algum problema na autenticação do seus dados.');
+          expect(feedbackMessage.hasClass('error')).toBe(true);
+        });
+
+        it('if "RondaWeb" is down, should tell it to the user', function () {
+          var feedbackMessage;
+          $httpBackend.expect('POST', '/api/v1/clock/hit').respond(500, {message: 'RondaWeb tá fora!'});
+          hitThePointBtn.click();
+          $httpBackend.flush();
+
+          feedbackMessage = element.find('#feedback-message');
+          expect(feedbackMessage).toBeDefined();
+          expect(feedbackMessage.text()).toBe('RondaWeb tá fora!');
+          expect(feedbackMessage.hasClass('error')).toBe(true);
+        });
       });
 
       describe('multiple clicks', function () {
@@ -73,8 +98,7 @@ describe('dojo clock register directive', function () {
         });
 
         it('should ignore multiple clicks at the same second', function () {
-          var feedbackMessage;
-          feedbackMessage = element.find('#feedback-message');
+          var feedbackMessage = element.find('#feedback-message');
 
           expect(feedbackMessage).toBeDefined();
           expect(feedbackMessage.text()).toBe('Você é um banana!');
@@ -84,7 +108,7 @@ describe('dojo clock register directive', function () {
         });
 
         it('should remove the warning message after 10s', function () {
-          feedbackMessage = element.find('#feedback-message');
+          var feedbackMessage = element.find('#feedback-message');
           expect(feedbackMessage.text()).toBe('Você é um banana!');
 
           // triggers all $timeout function calls

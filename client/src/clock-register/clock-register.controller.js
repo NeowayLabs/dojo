@@ -44,6 +44,13 @@
                 break;
               }
 
+              case 500: {
+                if (error.data.message) {
+                  setMessage(error.data.message, 'error');
+                  break;
+                } // TODO: melhorar essa ideia do break... ?
+              }
+
               default: {
                 setMessage('Aconteceu algum erro com o servidor :(', 'error');
               }
