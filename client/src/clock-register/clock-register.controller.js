@@ -28,8 +28,8 @@
               $scope.markings.push(res.data.time);
             }
           }).catch(function (error) {
-            if (error.message) {
-              setMessage(error.message, 'error');
+            if (error.data.message) {
+              setMessage(error.data.message, 'error');
               return;
             }
 
@@ -45,10 +45,10 @@
               }
 
               case 500: {
-                if (error.data.message) {
-                  setMessage(error.data.message, 'error');
-                  break;
-                } // TODO: melhorar essa ideia do break... ?
+                if (!error.data.message) {
+                  setMessage('Ocorreu algum erro desconhecido no servidor.', 'error');
+                }
+                break;
               }
 
               default: {
