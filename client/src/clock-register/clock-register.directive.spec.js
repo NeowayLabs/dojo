@@ -87,7 +87,6 @@ describe('dojo clock register directive', function () {
 
       describe('multiple clicks', function () {
         beforeEach(function () {
-          // Impedir chamar a parada de bater o ponto em menos de um minuto
           $httpBackend.when('POST', '/api/v1/clock/hit').respond(200, {time: '16:20:00'});
 
           hitThePointBtn.click();
@@ -103,8 +102,6 @@ describe('dojo clock register directive', function () {
           expect(feedbackMessage).toBeDefined();
           expect(feedbackMessage.text()).toBe('Você é um banana!');
           expect(feedbackMessage.hasClass('error')).toBe(true);
-
-          // TODO: Message should disappear after some time...
         });
 
         it('should remove the warning message after 10s', function () {
@@ -120,10 +117,10 @@ describe('dojo clock register directive', function () {
       });
     });
 
-    it('should handle "corujão" situations', function () {
+    xit('should handle "corujão" situations', function () {
     });
 
-    it('should use browser native notification', function () {
+    xit('should use browser native notification', function () {
     });
   });
 });
