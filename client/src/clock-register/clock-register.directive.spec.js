@@ -59,21 +59,27 @@ describe('dojo clock register directive', function () {
           expect(firstItem.text()).toBe('16:20:00');
         });
 
-        it('if session is lost, should warn the user with message', function () {
+        it('if session is lost, should warn the user with message', function (done) {
           var feedbackMessage;
-          $httpBackend.expect('POST', '/api/v1/clock/hit').respond(401, 'Authentication Failed');
+
+          spyOn(window, 'alert');
+
+          $httpBackend.expect('POST', '/api/v1/clock/hit').respond(401, {message: 'Ocorreu algum erro desconhecido no servidor.'});
           hitThePointBtn.click();
           $httpBackend.flush();
 
-          feedbackMessage = element.find('#feedback-message');
+          expect(window.alert).toHaveBeenCalledWith('Ocorreu algum erro desconhecido no servidor.');
 
-          expect(feedbackMessage).toBeDefined();
-          expect(feedbackMessage.text()).toBe('Houve algum problema na autenticação do seus dados.');
-          expect(feedbackMessage.hasClass('error')).toBe(true);
+          // feedbackMessage = element.find('#feedback-message');
+          //
+          // expect(feedbackMessage).toBeDefined();
+          // expect(feedbackMessage.text()).toBe('Ocorreu algum erro desconhecido no servidor.');
+          // expect(feedbackMessage.hasClass('error')).toBe(true);
         });
 
         it('if "RondaWeb" is down, should tell it to the user', function () {
           var feedbackMessage;
+
           $httpBackend.expect('POST', '/api/v1/clock/hit').respond(500, {message: 'RondaWeb tá fora!'});
           hitThePointBtn.click();
           $httpBackend.flush();
